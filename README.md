@@ -4,6 +4,7 @@ The documentation is currently in the source.
 <ul>
 <li>Foreword</li>
 <li>Synopsis</li>
+<li>Dependancies</li>
 <li>Usage</li>
 <li>Examples</li>
 <li>To-do/Limitations/Bugs</li>
