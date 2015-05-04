@@ -11,4 +11,4 @@ use lib 'lib/perl/';
 use FourChanDownloader;
 
 my $fcd = FourChanDownloader->new({directory_name => "best_of_4chan"});
-$fcd->DownloadThreadImages('');
+$fcd->DownloadThreadImages($ARGV[0]);
