@@ -10,5 +10,5 @@ use Getopt::Long;
 use lib 'lib/perl/';
 use FourChanDownloader;
 
-my $fcd = FourChanDownloader->new({directory_name => "best_of_4chan"});
+my $fcd = FourChanDownloader->new();
 $fcd->DownloadThreadImages($ARGV[0]);

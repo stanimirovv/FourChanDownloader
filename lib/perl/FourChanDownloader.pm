@@ -25,7 +25,6 @@ Error codes
 Next steps
 TODO add timeout for max download time ? 
 TODO don't redownload old pictures
-TODO make the script usable without having to edit it every time 
 =cut
 our $VERSION = 0.01;
 
