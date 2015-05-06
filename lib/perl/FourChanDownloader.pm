@@ -21,9 +21,7 @@ Error codes
 -ER012 cloud not create directory - in the rare case when this happens you probablly don't have permissions
 
 Next steps
-TODO add timeout for max download time ? 
 TODO don't redownload old pictures
-TODO add thread monitoring
 =cut
 our $VERSION = 0.01;
 
