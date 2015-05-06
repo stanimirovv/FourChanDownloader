@@ -115,9 +115,11 @@ sub DownloadThreadImages($$)
     {
         $$self{directory_name} = "";
     }
-    #opendir DIR, $dir or die "cannot open dir $dir: $!";
-    #my @file= readdir DIR;
-    #closedir DIR;
+    my $saved_files;
+    opendir $saved_files, "$dir_path$directory_name" or die "cannot open dir $dir: $!";
+    my @file = readdir $saved_files;
+    closedir $saved_files;
+    print Dumper @file;
     my @elements = $tree->look_down(
                                     _tag  => 'a',
                                     class => 'fileThumb',
@@ -129,6 +131,13 @@ sub DownloadThreadImages($$)
                                             my @arr = split('/', $file_url);
                                             my $file_name = pop(@arr);
                                             print "File name is: $file_name\n";
+                                            for my $saved_file (@saved_files)
+                                            {
+                                                if($saved_file eq "$save_file_path$file_name")
+                                                {
+                                                    next;
+                                                }
+                                            }
                                             try
                                             {
                                                 getstore($file_url, "$save_file_path$file_name");
