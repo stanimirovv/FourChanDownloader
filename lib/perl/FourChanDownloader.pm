@@ -94,33 +94,35 @@ sub DownloadThreadImages($$)
 
     my $save_file_path = ""; 
     my $time_stamp = "";
+    if($$self{directory_create})
+    {   
+        if(defined $$self{directory_name})
+        {   
+            $directory_name = $$self{directory_name};
+        }   
+        if($$self{timestamp})
+        {   
+            $time_stamp = time;
+        }            
+        my $dir_path =  "$$self{root_dir}$time_stamp$$self{identifier}";
+        if( !-d "$dir_path$directory_name" )
+        {   
+            mkdir "$dir_path$directory_name" or die "ER012 cloud not create directory! $!\n";
+        }
+        $save_file_path = "$dir_path$directory_name/";
+    }
+    else
+    {
+        $$self{directory_name} = "";
+    }
+    #opendir DIR, $dir or die "cannot open dir $dir: $!";
+    #my @file= readdir DIR;
+    #closedir DIR;
     my @elements = $tree->look_down(
                                     _tag  => 'a',
                                     class => 'fileThumb',
                                     #this function is ran for every image.
                                     sub {
-           
-                                            if($$self{directory_create})
-                                            {
-                                                if(defined $$self{directory_name})
-                                                {
-                                                   $directory_name = $$self{directory_name};
-                                                } 
-                                                if($$self{timestamp})
-                                                {
-                                                    $time_stamp = time;
-                                                }        
-                                                my $dir_path =  "$$self{root_dir}$time_stamp$$self{identifier}";
-                                                if( !-d "$dir_path$directory_name" )
-                                                {
-                                                    mkdir "$dir_path$directory_name" or die "ER012 cloud not create directory! $!\n";
-                                                }
-                                                $save_file_path = "$dir_path$directory_name/";                             
-                                            }
-                                            else
-                                            {
-                                                $$self{directory_name} = "";
-                                            }
                                             my $file_url = 'http:'.$_[0]->attr('href');
                                             print $file_url, "\n";
 
