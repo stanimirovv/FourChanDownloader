@@ -46,6 +46,7 @@ sub new($;$)
 {
     my ($class, $settings) = @_;
 
+    print "settings:", Dumper $settings;
 
     my $self =  {
                     directory_create    => 1,
@@ -56,6 +57,7 @@ sub new($;$)
                 };
     for my $key (keys %$self)
     {
+        print "Key: $key  value:$$settings{$key} \n";
         if(defined $$settings{$key})
         {
             $$self{$key} = $$settings{$key};
@@ -111,15 +113,15 @@ sub DownloadThreadImages($$)
                                                 {
                                                    $directory_name = $$self{directory_name};
                                                 } 
+                                                if($$self{timestamp})
+                                                {
+                                                    $time_stamp = time;
+                                                }        
                                                 my $dir_path =  "$$self{root_dir}$time_stamp$$self{identifier}";
                                                 if( !-d "$dir_path$directory_name" )
                                                 {
                                                     mkdir "$dir_path$directory_name" or die "ER012 cloud not create directory! $!\n";
                                                 }
-                                                if($$self{timestamp})
-                                                {
-                                                    $time_stamp = time;
-                                                }        
                                                 $save_file_path = "$dir_path$directory_name/";                             
                                             }
                                             else
