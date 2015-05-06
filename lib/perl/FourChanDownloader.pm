@@ -146,9 +146,4 @@ sub DownloadThreadImages($$)
                                 );
 }
 
-sub PrepareArgs()
-{
-}
-
-
 1;
