@@ -25,6 +25,7 @@ Error codes
 Next steps
 TODO add timeout for max download time ? 
 TODO don't redownload old pictures
+TODO add thread monitoring
 =cut
 our $VERSION = 0.01;
 
