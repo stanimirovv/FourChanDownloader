@@ -44,8 +44,6 @@ sub new($;$)
 {
     my ($class, $settings) = @_;
 
-    print "settings:", Dumper $settings;
-
     my $self =  {
                     directory_create    => 1,
                     directory_name      => undef,
@@ -55,7 +53,6 @@ sub new($;$)
                 };
     for my $key (keys %$self)
     {
-        print "Key: $key  value:$$settings{$key} \n";
         if(defined $$settings{$key})
         {
             $$self{$key} = $$settings{$key};
@@ -143,5 +140,21 @@ sub DownloadThreadImages($$)
                                         }
                                 );
 }
+
+sub DownloadImagesMonitor($$$)
+{
+    my ($self, $thread_url, $sleep_time) = @_;
+
+    if(!defined $sleep_time)
+    {
+        $sleep_time = 30;
+    }
+    while(1)
+    {
+        $self->DownloadImages($thread_url);
+        sleep $sleep_time;
+    }
+}
+
 
 1;
