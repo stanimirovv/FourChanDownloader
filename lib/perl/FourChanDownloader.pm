@@ -4,11 +4,9 @@ use HTML::TreeBuilder;  # must be installed
 use LWP::Simple;        # must be installed
 use Data::Dumper;
 use Try::Tiny;          # must be installed 
-use Getopt::Long; 
 
 =documentation
 short description: a module which downloads the files from 4chan threads
-long description: TODO
 
 Usage
 -create a new object with the desired options for download using the new() method 
